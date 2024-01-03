@@ -2,7 +2,9 @@ import React from "react";
 
 function CreateTodoButton(){
     return(
-       <button>X</button>
+       <button onClick={(event) => {
+            console.log(event, 'click')
+       }}>X</button>
     );
 }
 
