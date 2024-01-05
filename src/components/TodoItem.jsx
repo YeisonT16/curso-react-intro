@@ -3,9 +3,9 @@ import React from "react";
 function TodoItem(props){
     return (
         <li>
-            <span>V</span>
+            <span onClick={props.onFinaliced}>V</span>
             <p>{props.text}</p>
-            <span>X</span>
+            <span onClick={props.onDelete}>X</span>
         </li>
     )
 }
