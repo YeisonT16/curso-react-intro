@@ -1,10 +1,12 @@
 import React from "react";
 
-function CreateTodoButton(){
+function CreateTodoButton({ setOpenModal }){
     return(
-       <button onClick={(event) => {
-            console.log(event, 'click')
-       }}>X</button>
+    <button onClick={ () => setOpenModal(state => !state)   
+    }
+    
+    
+    >X</button>
     );
 }
 

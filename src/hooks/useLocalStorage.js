@@ -1,7 +1,11 @@
 import React from 'react'
 
+// CUSTOM HOOK PARA LOCALSTORAGE Y PESISTENCIA DE DATOS
+// Según la documentación de React, si observas un useEffect muy usado o con mucha lógica, lo más seguro es que puedas abstraerlo en un custom Hook
+
+
 export function useLocalStorage(itemName, initialValue){
-  const [item, setItem] = React.useState(initialValue);
+  const [item, setItem] = React.useState(initialValue); // Estado de todos y saveTodos
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false)
 
@@ -41,3 +45,27 @@ export function useLocalStorage(itemName, initialValue){
       error,
     };
   }
+
+
+  /*const defaultTodos = [
+  {
+    text: 'Cortar cebolla',
+    completed: true
+  },
+  {
+    text: 'Tomar el curso de Intro a Reat.js',
+    completed: false
+  },
+  {
+    text: 'Llorar con la Llorona',
+    completed: false
+  },
+  {
+    text: 'Conseguir trabajo como programador',
+    completed: false
+  },
+  {
+    text:'LALALALALA',
+    completed: true
+  }
+];*/

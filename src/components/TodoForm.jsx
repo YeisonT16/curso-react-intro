@@ -5,7 +5,7 @@ function TodoForm(){
 
     const {
         addTodo,
-        setOpenModal,        
+        setOpenModal,       
     } = React.useContext(TodoContext);
 
     const [newTodoValue,setNewTodoValue] = React.useState('')
@@ -45,3 +45,5 @@ function TodoForm(){
     </form>
     )
 }
+
+export { TodoForm }
