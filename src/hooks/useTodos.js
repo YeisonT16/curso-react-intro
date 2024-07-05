@@ -1,10 +1,9 @@
 import React from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "./useLocalStorage";
 
 
-const TodoContext = React.createContext()
 
-function TodoProvider({children}) {
+function useTodos() {
      //Estado para mostrar el estado de los TODOS completados y el total de TODOS en el componente TodoCounter
   const {
     item: todos,
@@ -55,26 +54,22 @@ function TodoProvider({children}) {
     saveTodos(newTodos);//Actualizamos el estado de (setTodos) con la nueva lista de todos (newTodos)
   }
 
- 
-    return (
-        <TodoContext.Provider value={{
-            loading,
-            error,
-            completedTodos,
-            totalTodos,
-            searchValue,
-            setSearchValue,
-            searchedTodos,
-            addTodo,
-            finalicedTodo,
-            deleteTodo,
-            openModal,
-            setOpenModal,
-        }}>
-            {children}
-        </TodoContext.Provider>
 
-    )
+    return {
+          loading,
+          error,
+          completedTodos,
+          totalTodos,
+          searchValue,
+          setSearchValue,
+          searchedTodos,
+          addTodo,
+          finalicedTodo,
+          deleteTodo,
+          openModal,
+          setOpenModal,
+        }
+    
 }
 
-export { TodoContext, TodoProvider };
+export { useTodos };

@@ -1,10 +1,24 @@
 import React from "react";
 
-function TodoList({children}){
+function TodoList(props){
+
+    const renderFunc = props.render || props.children
+
     return(
-         <ul>
-            {children}
-         </ul>
+
+        <section className="">
+            {props.error && props.onError()}
+            {props.loading && props.onLoading()}
+
+            {(!props.loading && !props.totalTodos.length) && props.onEmptyTodos()}
+
+            {(!!props.totalTodos && !props.searchedTodos.length) && onEmptySeachResults(props.searchText)}
+
+            {props.searchedTodos.map(renderFunc)}
+            
+            
+        </section>
+        
     );
 }
 

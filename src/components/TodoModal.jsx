@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 function Modal({ children }) {
     return (createPortal (
-        <div className='modal'>
+        <div className='absolute z-0 '>
             {children}
         </div>,
         document.getElementById('modal')
