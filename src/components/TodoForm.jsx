@@ -32,7 +32,7 @@ function TodoForm({ addTodo, setOpenModal,}){
             <button className='w-20 h-8 border border-indigo-400 rounded-lg  bg-indigo-100 text-lg font-semibold text-indigo-400 cursor-pointer' type='button' onClick={onCancel}>
                 Cancelar
             </button>
-            <button className='w-20 h-8 border border-indigo-100 rounded-lg  bg-indigo-600 text-lg font-semibold text-indigo-100 cursor-pointer' type='button'>
+            <button className='w-20 h-8 border border-indigo-100 rounded-lg  bg-indigo-600 text-lg font-semibold text-indigo-100 cursor-pointer' type='button' onClick={onSubmit}>
                 Agregar
             </button>
         </div>

@@ -81,7 +81,7 @@ function App() {
 
     
     
-  TodoList
+  
       {/*loading && <p>Estamos cargando...</p>}
       {error && <p>Ups. Algo salio mal...</p>}
       {(!loading && searchedTodos.length === 0) && <p>¡Crea tu primer TODO!</p>}
@@ -96,8 +96,7 @@ function App() {
         />
       })
          */}
-      TodoList
-
+    
     <CreateTodoButton
     
       setOpenModal={setOpenModal}

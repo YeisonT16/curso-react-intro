@@ -1,13 +1,19 @@
 import React from "react";
+import { CompleteIcon } from "./CompleteIcon";
+import { DeleteIcon } from "./DeleteIcon";
 
 function TodoItem(props){
+
+    const styleClick = props.completed ? 'bg-green-600 text-indigo-100' : 'cursor-pointer text-sky-600/85 bg-gray-700'
+    const styleCompleted = props.completed ? 'opacity-50 bg-gray-900 text-white' : 'text-indigo-200 bg-indigo-800'
     return (
-        <li>
-            <span onClick={props.onFinaliced}>V</span>
+        <div className={`relative w-72 h-auto min-h-6 p-2 text-mdrounded-xl font-semibold border-4 mb-2 rounded-xl border-zinc-600 ${styleCompleted}`}>
+            <span className={`absolute -left-2 -top-2 rounded-full hover:bg-green-600 hover:text-indigo-100 ${styleClick}`} onClick={props.onFinaliced}><CompleteIcon /></span>
             <p>{props.text}</p>
-            <span onClick={props.onDelete}>X</span>
-        </li>
+            <span className="absolute -right-2 -top-2 rounded-full text-red-900 bg-stone-800" onClick={props.onDelete}><DeleteIcon /></span>
+        </div>
     )
 }
+
 
 export { TodoItem };
