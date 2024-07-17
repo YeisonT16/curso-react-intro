@@ -16,6 +16,15 @@ import { TodoEmptyResults } from '../components/TodoEmptyResults';
 
 function App() {
 
+  const arrLoading = [0, 1, 2, 3, 4];
+  const renderLoading = () => (
+      arrLoading.map((_,index) => 
+      <TodoLoading 
+        key={index}
+      />
+      )
+    )
+
   const {
     loading,
     error,
@@ -54,7 +63,7 @@ function App() {
       totalTodos={totalTodos}
       searchText={searchValue}
       onError={() => <TodoError />}
-      onLoading={() => <TodoLoading />}
+      onLoading={renderLoading}
       onEmptyTodos={() => <EmptyTodos />}
       onEmptySearchResults={(searchText) => 
       <TodoEmptyResults 
