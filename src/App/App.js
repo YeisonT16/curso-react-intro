@@ -41,7 +41,7 @@ function App() {
   } = useTodos();
 
   return (
-    <div className="relative flex flex-col w-screen h-screen bg-indigo-700 justify-center items-center" >
+    <div className="z-0 relative flex flex-col w-screen h-screen bg-indigo-700 justify-center items-center" >
 
     <TodoHeader>
       <TodoCounter
@@ -115,7 +115,7 @@ function App() {
 
     {openModal && ( //&& funciona como un if (si openModal es true 'esta abierto')
       <Modal>
-      la funcionalidad de agregar Todos
+      
       <TodoForm
         addTodo={addTodo}
         setOpenModal={setOpenModal}
