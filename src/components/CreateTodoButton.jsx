@@ -1,14 +1,22 @@
 import React from "react";
 import { PlusIcon } from "./PlusIcon";
 
-function CreateTodoButton({ setOpenModal }){
+function CreateTodoButton({ setOpenModal, loading }){
+
+    const buttonDisabled = loading ? 'hidden' : 'grid absolute'
+    
     return(
     
-        <div className="flex items-center absolute top-72 bg-indigo-200 border rounded-full size-16 ">
-            <button className={`bg-indigo-200 size-fit rounded-full border-indigo-500 text-indigo-500 font-normal text-7xl`}
+        <div className={`justify-items-stretch top-72 bg-indigo-200 border rounded-full size-16 ${buttonDisabled}`}>
+            <button className={`bg-indigo-200 size-16 rounded-full border-indigo-500 text-indigo-500 font-normal`}
             onClick={ () => setOpenModal(state => !state)}
+
             >
-            <PlusIcon/>
+            <PlusIcon
+                whith={'64px'}
+                height={'64px'}
+                strokeWidth={'1'}
+            />
             </button>
         </div>
     );

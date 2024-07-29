@@ -111,6 +111,7 @@ function App() {
     <CreateTodoButton
     
       setOpenModal={setOpenModal}
+      loading={loading}
     />
 
     {openModal && ( //&& funciona como un if (si openModal es true 'esta abierto')
@@ -118,6 +119,7 @@ function App() {
       
       <TodoForm
         addTodo={addTodo}
+        openModal={openModal}
         setOpenModal={setOpenModal}
       />
       </Modal>
