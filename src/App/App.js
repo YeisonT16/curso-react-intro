@@ -12,6 +12,7 @@ import { TodoError } from '../components/TodoError';
 import { TodoLoading } from '../components/TodoLoading';
 import { EmptyTodos } from '../components/EmptyTodos';
 import { TodoEmptyResults } from '../components/TodoEmptyResults';
+import { TodoContainer } from '../components/TodoContainer';
 
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
         loading={loading}
       />
     </TodoHeader>
-
+    <TodoContainer>
     <TodoList
       error={error}
       loading={loading}
@@ -79,6 +80,7 @@ function App() {
       //   />
       // )}
     >
+  
       {todo => (
         <TodoItem
             key={todo.text}
@@ -88,7 +90,15 @@ function App() {
             onDelete={() => deleteTodo(todo.text)}
         />
       )}
-    </TodoList>
+
+      </TodoList>
+
+      <CreateTodoButton    
+      setOpenModal={setOpenModal}
+      loading={loading}
+      />
+
+    </TodoContainer>
 
     
     
@@ -108,11 +118,7 @@ function App() {
       })
          */}
     
-    <CreateTodoButton
     
-      setOpenModal={setOpenModal}
-      loading={loading}
-    />
 
     {openModal && ( //&& funciona como un if (si openModal es true 'esta abierto')
       <Modal>

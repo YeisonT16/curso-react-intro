@@ -7,7 +7,7 @@ function CreateTodoButton({ setOpenModal, loading }){
     
     return(
     
-        <div className={`justify-items-stretch top-72 bg-indigo-200 border rounded-full size-16 ${buttonDisabled}`}>
+        <div className={`justify-items-stretch -top-6 bg-indigo-200 border rounded-full size-16 ${buttonDisabled}`}>
             <button className={`bg-indigo-200 size-16 rounded-full border-indigo-500 text-indigo-500 font-normal`}
             onClick={ () => setOpenModal(state => !state)}
 
