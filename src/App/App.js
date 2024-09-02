@@ -13,6 +13,7 @@ import { TodoLoading } from '../components/TodoLoading';
 import { EmptyTodos } from '../components/EmptyTodos';
 import { TodoEmptyResults } from '../components/TodoEmptyResults';
 import { TodoContainer } from '../components/TodoContainer';
+import { ModalDialog } from '../components/ModalDialog';
 
 
 function App() {
@@ -39,10 +40,12 @@ function App() {
     searchValue,
     setSearchValue,
     addTodo,
+    modalDialog,
+    setModalDialog
   } = useTodos();
 
   return (
-    <div className="z-0 relative flex flex-col w-screen h-screen bg-indigo-700 justify-center items-center" >
+    <div className="z-0 relative flex flex-col w-full h-screen bg-indigo-700 justify-center items-center" >
 
     <TodoHeader>
       <TodoCounter
@@ -86,8 +89,11 @@ function App() {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
             onFinaliced={() => finalicedTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
+            setModalDialog={setModalDialog}
         />
       )}
 
@@ -129,6 +135,16 @@ function App() {
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
+      </Modal>
+    )}
+
+    {modalDialog && (
+      <Modal>
+        <ModalDialog
+            modalDialog={modalDialog}
+            setModalDialog={setModalDialog}
+            //onDelete={() => deleteTodo()}
+        />
       </Modal>
     )}
     </div>

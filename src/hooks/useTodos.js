@@ -21,6 +21,8 @@ function useTodos() {
    //Estado para abrir el modal al dar click en el boton +
   const [openModal, setOpenModal] = React.useState(false)
 
+  const [modalDialog, setModalDialog] = React.useState(false)
+
 
   //Estado derivado para filtrar los todos de nuestra lista que coincidan con el o los carecteres que escribamos en la barra del searchTodo
   const searchedTodos = todos.filter((todo) => {
@@ -68,6 +70,8 @@ function useTodos() {
           deleteTodo,
           openModal,
           setOpenModal,
+          modalDialog,
+          setModalDialog
         }
     
 }
