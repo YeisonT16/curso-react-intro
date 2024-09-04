@@ -28,6 +28,8 @@ function App() {
     )
 
   const {
+    todos,
+    idTodo,
     loading,
     error,
     searchedTodos,
@@ -92,7 +94,7 @@ function App() {
             openModal={openModal}
             setOpenModal={setOpenModal}
             onFinaliced={() => finalicedTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
+            // onDelete={() => deleteTodo(todo.text)}
             setModalDialog={setModalDialog}
         />
       )}
@@ -137,13 +139,15 @@ function App() {
       />
       </Modal>
     )}
-
+    
     {modalDialog && (
       <Modal>
         <ModalDialog
+            key={todos}
+            id={idTodo}
             modalDialog={modalDialog}
             setModalDialog={setModalDialog}
-            //onDelete={() => deleteTodo()}
+            onDelete={deleteTodo}
         />
       </Modal>
     )}

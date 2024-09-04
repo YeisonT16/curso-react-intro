@@ -23,6 +23,8 @@ function useTodos() {
 
   const [modalDialog, setModalDialog] = React.useState(false)
 
+  //const [idTodo, setIdTodo] = useState(null)
+  
 
   //Estado derivado para filtrar los todos de nuestra lista que coincidan con el o los carecteres que escribamos en la barra del searchTodo
   const searchedTodos = todos.filter((todo) => {
@@ -39,6 +41,12 @@ function useTodos() {
     });
     saveTodos(newTodos)
   }
+
+  const idTodo = (text) => {
+    const id = todos.find((todo) => todo.text = text)
+        return id
+        console.log(id)
+  } 
   //Estado derivado para cambiar la propiedad completed de false a true dentro de la lista(array) de todos 
   const finalicedTodo = (text) => {
     const newTodos = [...todos]; //Nos traemos una copia de la lista de todos
@@ -51,13 +59,15 @@ function useTodos() {
   const deleteTodo = (text) => {
     const newTodos = [...todos];// Nos traemos una copia del array de todos
     const todoIndex = newTodos.findIndex((todo) => //Buscamos el indice que coincida con el texto en la lista de todos
-    todo.text === text);
+    todo.text === text);    
     newTodos.splice(todoIndex, 1) //Con el metodo splice sacamos el ToDo en la lista de todos que esta en la variable constante (todoIndex) y el numero indica cuatos items vamos a sacar, en este caso solo uno por que ademas es el unico que deberia encontrar.
     saveTodos(newTodos);//Actualizamos el estado de (setTodos) con la nueva lista de todos (newTodos)
   }
 
 
     return {
+          todos,
+          idTodo,
           loading,
           error,
           completedTodos,
