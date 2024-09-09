@@ -22,8 +22,6 @@ function useTodos() {
   const [openModal, setOpenModal] = React.useState(false)
 
   const [modalDialog, setModalDialog] = React.useState(false)
-
-  //const [idTodo, setIdTodo] = useState(null)
   
 
   //Estado derivado para filtrar los todos de nuestra lista que coincidan con el o los carecteres que escribamos en la barra del searchTodo
@@ -41,12 +39,6 @@ function useTodos() {
     });
     saveTodos(newTodos)
   }
-
-  const idTodo = (text) => {
-    const id = todos.find((todo) => todo.text = text)
-        return id
-        console.log(id)
-  } 
   //Estado derivado para cambiar la propiedad completed de false a true dentro de la lista(array) de todos 
   const finalicedTodo = (text) => {
     const newTodos = [...todos]; //Nos traemos una copia de la lista de todos
@@ -67,7 +59,7 @@ function useTodos() {
 
     return {
           todos,
-          idTodo,
+          //idTodo,
           loading,
           error,
           completedTodos,

@@ -29,7 +29,6 @@ function App() {
 
   const {
     todos,
-    idTodo,
     loading,
     error,
     searchedTodos,
@@ -47,7 +46,7 @@ function App() {
   } = useTodos();
 
   return (
-    <div className="z-0 relative flex flex-col w-full h-screen bg-indigo-700 justify-center items-center" >
+    <div className="z-0 relative flex flex-col w-full h-auto bg-indigo-700 justify-center items-center p-10 min-h-screen" >
 
     <TodoHeader>
       <TodoCounter
@@ -94,7 +93,7 @@ function App() {
             openModal={openModal}
             setOpenModal={setOpenModal}
             onFinaliced={() => finalicedTodo(todo.text)}
-            // onDelete={() => deleteTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
             setModalDialog={setModalDialog}
         />
       )}
@@ -131,7 +130,6 @@ function App() {
 
     {openModal && ( //&& funciona como un if (si openModal es true 'esta abierto')
       <Modal>
-      
       <TodoForm
         addTodo={addTodo}
         openModal={openModal}
@@ -142,9 +140,9 @@ function App() {
     
     {modalDialog && (
       <Modal>
+        
         <ModalDialog
-            key={todos}
-            id={idTodo}
+            todos={todos}
             modalDialog={modalDialog}
             setModalDialog={setModalDialog}
             onDelete={deleteTodo}
