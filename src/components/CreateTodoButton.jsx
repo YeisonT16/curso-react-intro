@@ -9,7 +9,7 @@ function CreateTodoButton({ setOpenModal, loading, openModal }){
     return(
     
         <div className={`justify-items-stretch -top-6 bg-indigo-200 border rounded-full size-fit hover:scale-110 duration-300 ${buttonDisabled}`}>
-            <button className={`bg-indigo-200 size-16 rounded-full border-indigo-500 text-indigo-500 font-normal  hover:bg-indigo-500 hover:opacity-50 hover:text-indigo-200 duration-300 ${modalOpen}`}
+            <button className={`bg-indigo-200 size-16 rounded-full border-indigo-500 text-indigo-800 font-normal  hover:bg-[#80d8daac] hover:opacity-50 hover:text-[#392177] duration-300 ${modalOpen}`}
             onClick={ () => setOpenModal(state => !state)}
 
             >

@@ -7,6 +7,7 @@ function useTodos() {
      //Estado para mostrar el estado de los TODOS completados y el total de TODOS en el componente TodoCounter
   const {
     item: todos,
+    setItem: setTodos,
     saveItem: saveTodos,
     loading,
     error,    
@@ -22,6 +23,8 @@ function useTodos() {
   const [openModal, setOpenModal] = React.useState(false)
 
   const [modalDialog, setModalDialog] = React.useState(false)
+
+  const [modalEdit, setModalEdit] = React.useState(false)
   
 
   //Estado derivado para filtrar los todos de nuestra lista que coincidan con el o los carecteres que escribamos en la barra del searchTodo
@@ -59,11 +62,13 @@ function useTodos() {
 
     return {
           todos,
+          setTodos,
           //idTodo,
           loading,
           error,
           completedTodos,
           totalTodos,
+          saveTodos,
           searchValue,
           setSearchValue,
           searchedTodos,
@@ -73,7 +78,9 @@ function useTodos() {
           openModal,
           setOpenModal,
           modalDialog,
-          setModalDialog
+          setModalDialog,
+          modalEdit,
+          setModalEdit
         }
     
 }

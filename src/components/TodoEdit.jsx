@@ -1,33 +1,42 @@
 import React from 'react';
 
-function TodoForm({ addTodo, openModal, setOpenModal,}){
+function TodoEdit({ todos, setTodos, addTodo, modalEdit, setModalEdit}){
 
     const [newTodoValue, setNewTodoValue] = React.useState('')
 
     const onSubmit = (event) => {
         event.preventDefault();
         addTodo(newTodoValue)
-        setOpenModal(false)
+        modalEdit(false)
     };
 
     const onCancel = () => {
-        setOpenModal(false)
+        setModalEdit(false)
     }
 
-    const onChange = (event) => {
-        setNewTodoValue(event.target.value)
+    const handleInputChange = (event) => {
+        const {value} = event.target;
+        setTodos((prevTodo) => (
+            {
+            ...prevTodo,
+            value
+            }
+        
+        ));
+        
+        console.log('datos nuevos', )
+    };
 
-    }
 
-    const collapsibleForm = openModal ? 'transition-[max-height-240px] delay-150 ease-in-out duration-300' : 'max-h-0 hidden'
+    const collapsibleForm = modalEdit ? 'transition-[max-height-240px] delay-150 ease-in-out duration-300' : 'max-h-0 hidden'
 
     return (
     <form className={`flex flex-col absolute items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 content-between w-96 p-4 bg-[#392177]/90 rounded-lg border-8 border-indigo-100 text-lg font-medium ${collapsibleForm}`} onSubmit={onSubmit}>
             <label className='font-bold text-xl text-indigo-200 mb-4' htmlFor="">Escribe un nuevo TODO</label>
             <textarea className='w-72 h-15 rounded-lg border resize-none outline-0 mb-8'
                 placeholder='Escribe una nueva tarea..'
-                value={newTodoValue}
-                onChange={onChange}
+                value={todos.text}
+                onChange={handleInputChange}
                 required
             />
         <div className='flex w-80 justify-around'>
@@ -42,4 +51,4 @@ function TodoForm({ addTodo, openModal, setOpenModal,}){
     )
 }
 
-export { TodoForm }
+export { TodoEdit }

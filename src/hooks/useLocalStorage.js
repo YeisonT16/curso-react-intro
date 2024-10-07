@@ -40,6 +40,7 @@ export function useLocalStorage(itemName, initialValue){
   
     return {
       item,
+      setItem,
       saveItem,
       loading,
       error,

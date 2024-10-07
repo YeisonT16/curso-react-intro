@@ -14,6 +14,7 @@ import { EmptyTodos } from '../components/EmptyTodos';
 import { TodoEmptyResults } from '../components/TodoEmptyResults';
 import { TodoContainer } from '../components/TodoContainer';
 import { ModalDialog } from '../components/ModalDialog';
+import { TodoEdit } from '../components/TodoEdit';
 
 
 function App() {
@@ -29,10 +30,12 @@ function App() {
 
   const {
     todos,
+    setTodos,
     loading,
     error,
     searchedTodos,
     finalicedTodo,
+    saveTodos,
     deleteTodo,
     openModal,
     setOpenModal,
@@ -42,11 +45,13 @@ function App() {
     setSearchValue,
     addTodo,
     modalDialog,
-    setModalDialog
+    setModalDialog,
+    modalEdit,
+    setModalEdit
   } = useTodos();
 
   return (
-    <div className="z-0 relative flex flex-col w-full h-auto bg-indigo-700 justify-center items-center p-10 min-h-screen" >
+    <div className="z-0 relative flex flex-col w-full bg-gradient-to-r from-[#80d8daac] to-[#392177] h-auto justify-center items-center p-10 min-h-screen" >
 
     <TodoHeader>
       <TodoCounter
@@ -147,6 +152,19 @@ function App() {
             setModalDialog={setModalDialog}
             onDelete={deleteTodo}
         />
+      </Modal>
+    )}
+
+    {modalEdit && (
+      <Modal>
+        <TodoEdit
+          todos={todos}
+          setTodos={setTodos}
+          saveTodos={saveTodos}
+          modalDialog={modalEdit}
+          setModalDialog={setModalEdit}        
+        />
+
       </Modal>
     )}
     </div>
