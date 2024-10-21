@@ -35,6 +35,9 @@ function TodoItem(props){
                 }>  
                     <DeleteIcon/>
             </span>
+            <span>
+                {/* <EditIcon/> */}
+            </span>
         </div>
     )
 }
