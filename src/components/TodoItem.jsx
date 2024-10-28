@@ -14,29 +14,28 @@ function TodoItem(props){
     const showModal = () => {
         <ModalDialog 
             onDelete={props.onDelete}
+
         />
         props.setModalDialog(true)
     }
 
     const showModalEdit = () => {
-        <TodoEdit 
-            
+        <TodoEdit            
+            textValue={props.text}       
+            key={props.key}
         />
+        props.setModalEdit(true)
+        console.log(props.text)  //Buscar la forma de pasar la prop text al componente TodoEdit
     }
 
     return (
-        <div className={`relative w-72 h-auto min-h-6 p-2 text-mdrounded-xl cursor-pointer font-semibold border-4 mb-2 rounded-xl border-zinc-600 ${styleCompleted}`}>
+        <div className={`relative w-72 h-auto min-h-6 p-2 text-mdrounded-xl cursor-pointer font-semibold border-4 mb-2 rounded-xl border-zinc-600 ${styleCompleted}`} >
             <span className={`absolute -left-2 -top-2 rounded-full hover:bg-green-600 hover:text-indigo-100 ${styleClickCheckIcon}`} onClick={props.onFinaliced}><CompleteIcon /></span>
-            <p>{props.text}</p>
+            <p onClick={() => {showModalEdit()}}>{props.text}</p>
             <span className={`absolute -right-2 -top-2 rounded-full cursor-pointer hover:text-indigo-100 hover:bg-red-900 ${styleClickDeleteIcon}`} 
-                onClick={()=> {
-                    showModal()     
-                }
+                onClick={()=>showModal()
                 }>  
                     <DeleteIcon/>
-            </span>
-            <span>
-                {/* <EditIcon/> */}
             </span>
         </div>
     )

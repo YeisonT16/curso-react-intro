@@ -94,12 +94,17 @@ function App() {
         <TodoItem
             key={todo.text}
             text={todo.text}
+            todos={todos}
+            setTodos={setTodos}
+            saveTodos={saveTodos}
             completed={todo.completed}
             openModal={openModal}
             setOpenModal={setOpenModal}
             onFinaliced={() => finalicedTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
             setModalDialog={setModalDialog}
+            modalEdit={modalEdit}
+            setModalEdit={setModalEdit}
         />
       )}
 
@@ -158,13 +163,12 @@ function App() {
     {modalEdit && (
       <Modal>
         <TodoEdit
+          modalEdit={modalEdit}
           todos={todos}
           setTodos={setTodos}
+          setModalEdit={setModalEdit}
           saveTodos={saveTodos}
-          modalDialog={modalEdit}
-          setModalDialog={setModalEdit}        
         />
-
       </Modal>
     )}
     </div>

@@ -31,7 +31,7 @@ export function useLocalStorage(itemName, initialValue){
       }
     
   }, 3000);
-  }, []);    
+  }, [initialValue, itemName]);    
   
     const saveItem = (newItem) => { //Actualizador de react como de localStorage
       localStorage.setItem(itemName, JSON.stringify(newItem));
