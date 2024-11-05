@@ -1,27 +1,27 @@
 import React from 'react';
 
-function TodoEdit(props){
+function TodoEdit({text, setModalEdit, setTodos, modalEdit}){
 
     //const [todoValue, setTodoValue] = React.useState(props.text)
 
     const onSubmit = (event) => {
-        event.preventDefault();
+        //event.preventDefault();
         // props.saveTodos(handleInputChange)        
         // props.setModalEdit(false)
-        console.log(props.textValue)
+        console.log('texto:',text)
     };
 
     const onCancel = () => {
-        props.setModalEdit(false)
+        setModalEdit(false)
     }
 
     const handleInputChange = (event) => {
         
         const {value} = event.target;
-        props.setTodos((prevTodo) => (
+            setTodos((prevTodo) => (
             {
             ...prevTodo,
-            value
+            text: value
             }
         ));
         
@@ -37,14 +37,14 @@ function TodoEdit(props){
     };
 
 
-    const collapsibleForm = props.modalEdit ? '' : 'max-h-0 hidden'
+    const collapsibleForm = modalEdit ? '' : 'max-h-0 hidden'
 
     return (
     <form className={`flex flex-col absolute items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 content-between w-96 p-4 bg-[#392177]/90 rounded-lg border-8 border-indigo-100 text-lg font-medium ${collapsibleForm}`} onSubmit={onSubmit}>
-            <label className='font-bold text-xl text-indigo-200 mb-4' htmlFor="">Edita un TODO</label>
+            <label className='font-bold text-xl text-indigo-200 mb-4' htmlFor="">Editar TODO</label>
             <textarea className='w-72 h-15 rounded-lg border resize-none outline-0 mb-8'
                 placeholder='Escribe una nueva tarea..'
-                value={props.textValue}
+                value={text}
                 onChange={handleInputChange}
                 required
             />

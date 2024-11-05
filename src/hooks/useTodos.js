@@ -14,10 +14,10 @@ function useTodos() {
   } = useLocalStorage('TODOS_V1', [])
   const completedTodos = todos.filter((item) => !!item.completed  //!! la doble negacion se usa para convertir en boolean el parametro a evaluar y asi obtener una respuesta mas clara, ya sea true o false 
   ).length;
-  const totalTodos = todos.length;
+  const totalTodos = todos.length; //TODO: resolver problema con esta función
 
   //Estado para establecer y actualizar la busqueda de todos cada vez que se escibe un caracter en la barra de busqueda
-  const [searchValue, setSearchValue] = React.useState('')
+  const [searchValue, setSearchValue] = React.useState(null)
 
    //Estado para abrir el modal al dar click en el boton +
   const [openModal, setOpenModal] = React.useState(false)
@@ -25,14 +25,33 @@ function useTodos() {
   const [modalDialog, setModalDialog] = React.useState(false)
 
   const [modalEdit, setModalEdit] = React.useState(false)
-  
 
+  const [showText, setShowText] = React.useState('')
+
+  const [filteredTodos, setFilteredTodos] = React.useState(null)
+  
+  React.useEffect(() => {
+    if(searchValue){
+      setFilteredTodos(filtered(todos, searchValue))
+    } else {
+      setFilteredTodos(todos)
+    }
+  }, [todos, searchValue])
+
+  
+  
   //Estado derivado para filtrar los todos de nuestra lista que coincidan con el o los carecteres que escribamos en la barra del searchTodo
-  const searchedTodos = todos.filter((todo) => {
-    const todoText = todo.text.toLowerCase();   // Convertimos el texto en el todo a minusculas
-    const searchText = searchValue.toLowerCase(); // Convertimos el texto de labusqueda a minusculas
-    return todoText.includes(searchText);// Devolvemos la lista de todos que coincidieron con los caracteres de busqueda
-  })
+  const filtered = (items, searchedItems) => {
+    return items?.filter((item) => item.text.toLowerCase().includes(searchedItems.toLowerCase())  
+  )
+  }
+
+//   const searchedTodos = todos.filter((todo) => {
+//     const todoText = todo.text.toLowerCase();   // Convertimos el texto en el todo a minusculas
+//     const searchText = searchValue.toLowerCase(); // Convertimos el texto de labusqueda a minusculas
+//     return todoText.includes(searchText);// Devolvemos la lista de todos que coincidieron con los caracteres de busqueda
+//   }
+// )
 
   const addTodo = (text) => {
     const newTodos = [...todos];
@@ -58,7 +77,11 @@ function useTodos() {
     newTodos.splice(todoIndex, 1) //Con el metodo splice sacamos el ToDo en la lista de todos que esta en la variable constante (todoIndex) y el numero indica cuatos items vamos a sacar, en este caso solo uno por que ademas es el unico que deberia encontrar.
     saveTodos(newTodos);//Actualizamos el estado de (setTodos) con la nueva lista de todos (newTodos)
   }
-
+  
+  const findText =(searchText) =>{
+    const foundText = todos.find(item => item.text === searchText)
+    setShowText(foundText)
+  }
 
     return {
           todos,
@@ -71,7 +94,7 @@ function useTodos() {
           saveTodos,
           searchValue,
           setSearchValue,
-          searchedTodos,
+          //searchedTodos,
           addTodo,
           finalicedTodo,
           deleteTodo,
@@ -80,7 +103,10 @@ function useTodos() {
           modalDialog,
           setModalDialog,
           modalEdit,
-          setModalEdit
+          setModalEdit,
+          findText,
+          showText,
+          filteredTodos
         }
     
 }

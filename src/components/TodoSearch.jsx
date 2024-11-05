@@ -4,9 +4,7 @@ import React from "react";
 function TodoSearch({ searchValue, setSearchValue, loading }){
 
     const onSearchValueChange = (event) => {
-        
-        setSearchValue(event.target.value)
-        
+        setSearchValue(event.target.value)        
 }
     const stayleDisabled = loading ? 'opacity-50' : ''
     

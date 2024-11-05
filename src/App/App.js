@@ -47,7 +47,10 @@ function App() {
     modalDialog,
     setModalDialog,
     modalEdit,
-    setModalEdit
+    setModalEdit,
+    findText,
+    showText,
+    filteredTodos
   } = useTodos();
 
   return (
@@ -72,6 +75,7 @@ function App() {
       searchedTodos={searchedTodos}
       totalTodos={totalTodos}
       searchText={searchValue}
+      filteredTodos={filteredTodos}
       onError={() => <TodoError />}
       onLoading={renderLoading}
       onEmptyTodos={() => <EmptyTodos />}
@@ -102,9 +106,11 @@ function App() {
             setOpenModal={setOpenModal}
             onFinaliced={() => finalicedTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
+            findText={findText}
             setModalDialog={setModalDialog}
             modalEdit={modalEdit}
             setModalEdit={setModalEdit}
+            showText={showText}
         />
       )}
 
@@ -162,7 +168,8 @@ function App() {
 
     {modalEdit && (
       <Modal>
-        <TodoEdit
+        <TodoEdit  
+          text={showText.text}        
           modalEdit={modalEdit}
           todos={todos}
           setTodos={setTodos}
