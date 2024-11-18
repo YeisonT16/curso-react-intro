@@ -162,6 +162,7 @@ function App() {
             modalDialog={modalDialog}
             setModalDialog={setModalDialog}
             onDelete={deleteTodo}
+            text={showText.text}
         />
       </Modal>
     )}

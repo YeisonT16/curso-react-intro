@@ -17,7 +17,7 @@ function TodoEdit({text, setModalEdit, setTodos, modalEdit}){
 
     const handleInputChange = (event) => {
         
-        const {value} = event.target;
+        const {value} = event.target.value;
             setTodos((prevTodo) => (
             {
             ...prevTodo,
@@ -36,7 +36,8 @@ function TodoEdit({text, setModalEdit, setTodos, modalEdit}){
         console.log('datos nuevos', )
     };
 
-
+    console.log('texto', text);
+    
     const collapsibleForm = modalEdit ? '' : 'max-h-0 hidden'
 
     return (

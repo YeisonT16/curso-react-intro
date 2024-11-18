@@ -12,9 +12,12 @@ function useTodos() {
     loading,
     error,    
   } = useLocalStorage('TODOS_V1', [])
-  const completedTodos = todos.filter((item) => !!item.completed  //!! la doble negacion se usa para convertir en boolean el parametro a evaluar y asi obtener una respuesta mas clara, ya sea true o false 
+  
+  const completedTodos = todos.filter((item) => !!item.completed//!! la doble negacion se usa para convertir en boolean el parametro a evaluar y asi obtener una respuesta mas clara, ya sea true o false 
   ).length;
-  const totalTodos = todos.length; //TODO: resolver problema con esta función
+// console.log(completedTodos);
+
+  const totalTodos = todos.length; //TODO: resolver problema con esta variable
 
   //Estado para establecer y actualizar la busqueda de todos cada vez que se escibe un caracter en la barra de busqueda
   const [searchValue, setSearchValue] = React.useState(null)
@@ -73,7 +76,8 @@ function useTodos() {
   const deleteTodo = (text) => {
     const newTodos = [...todos];// Nos traemos una copia del array de todos
     const todoIndex = newTodos.findIndex((todo) => //Buscamos el indice que coincida con el texto en la lista de todos
-    todo.text === text);    
+    todo.text === text);
+    console.log(todoIndex);        
     newTodos.splice(todoIndex, 1) //Con el metodo splice sacamos el ToDo en la lista de todos que esta en la variable constante (todoIndex) y el numero indica cuatos items vamos a sacar, en este caso solo uno por que ademas es el unico que deberia encontrar.
     saveTodos(newTodos);//Actualizamos el estado de (setTodos) con la nueva lista de todos (newTodos)
   }
