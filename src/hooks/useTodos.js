@@ -13,14 +13,16 @@ function useTodos() {
     error,    
   } = useLocalStorage('TODOS_V1', [])
   
-  const completedTodos = todos.filter((item) => !!item.completed//!! la doble negacion se usa para convertir en boolean el parametro a evaluar y asi obtener una respuesta mas clara, ya sea true o false 
-  ).length;
-// console.log(completedTodos);
+
+  const completedTodos = Array.isArray(todos) ? todos.filter(todo => todo.completed).length : [];
+  // const completedTodos = todos.filter((item) => !!item.completed//!! la doble negacion se usa para convertir en boolean el parametro a evaluar y asi obtener una respuesta mas clara, ya sea true o false 
+  // ).length;
+
 
   const totalTodos = todos.length; //TODO: resolver problema con esta variable
 
   //Estado para establecer y actualizar la busqueda de todos cada vez que se escibe un caracter en la barra de busqueda
-  const [searchValue, setSearchValue] = React.useState(null)
+  const [searchValue, setSearchValue] = React.useState('')
 
    //Estado para abrir el modal al dar click en el boton +
   const [openModal, setOpenModal] = React.useState(false)
@@ -29,9 +31,11 @@ function useTodos() {
 
   const [modalEdit, setModalEdit] = React.useState(false)
 
-  const [showText, setShowText] = React.useState('')
+  const [showTodo, setShowTodo] = React.useState('')
 
-  const [filteredTodos, setFilteredTodos] = React.useState(null)
+  const [filteredTodos, setFilteredTodos] = React.useState([])
+
+  // console.log('filtered-todos:',filteredTodos);
   
   React.useEffect(() => {
     if(searchValue){
@@ -45,7 +49,7 @@ function useTodos() {
   
   //Estado derivado para filtrar los todos de nuestra lista que coincidan con el o los carecteres que escribamos en la barra del searchTodo
   const filtered = (items, searchedItems) => {
-    return items?.filter((item) => item.text.toLowerCase().includes(searchedItems.toLowerCase())  
+    return items.filter((item) => item.text.toLowerCase().includes(searchedItems.toLowerCase())  
   )
   }
 
@@ -56,13 +60,22 @@ function useTodos() {
 //   }
 // )
 
+  const generateRandomId = () => {
+    const randomPart = Math.random().toString(36).substring(2, 9);
+    const timePart = Date.now().toString(36);
+    return `${randomPart}-${timePart}`
+  }
+
   const addTodo = (text) => {
     const newTodos = [...todos];
     newTodos.push({
       text,
       completed: false,
+      id:generateRandomId()
     });
     saveTodos(newTodos)
+    console.log(newTodos);
+        
   }
   //Estado derivado para cambiar la propiedad completed de false a true dentro de la lista(array) de todos 
   const finalicedTodo = (text) => {
@@ -82,9 +95,9 @@ function useTodos() {
     saveTodos(newTodos);//Actualizamos el estado de (setTodos) con la nueva lista de todos (newTodos)
   }
   
-  const findText =(searchText) =>{
-    const foundText = todos.find(item => item.text === searchText)
-    setShowText(foundText)
+  const findTodo =(id) =>{
+    const foundTodo = todos.find(item => item.id === id)
+    setShowTodo(foundTodo)
   }
 
     return {
@@ -108,8 +121,8 @@ function useTodos() {
           setModalDialog,
           modalEdit,
           setModalEdit,
-          findText,
-          showText,
+          findTodo,
+          showTodo,
           filteredTodos
         }
     

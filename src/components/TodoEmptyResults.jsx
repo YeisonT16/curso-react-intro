@@ -2,7 +2,11 @@ import React from "react";
 
 function TodoEmptyResults(props){
     return(
-        <p>No se encontraron coincidencias para {props.searchText} ...</p>
+        <>
+            <span>No se encontraron coincidencias para 
+                <p className="font-bold text-xl text-sky-600">{props.searchText} ...</p>
+            </span>
+        </>
     )
 }
 

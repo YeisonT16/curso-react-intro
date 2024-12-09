@@ -34,9 +34,9 @@ function TodoItem(props){
     return (
         <div className={`relative w-72 h-auto min-h-6 p-2 text-mdrounded-xl cursor-pointer font-semibold border-4 mb-2 rounded-xl border-zinc-600 ${styleCompleted}`} >
             <span className={`absolute -left-2 -top-2 rounded-full hover:bg-green-600 hover:text-indigo-100 ${styleClickCheckIcon}`} onClick={props.onFinaliced}><CompleteIcon /></span>
-            <p onClick={() => {showModalEdit(); props.findText(props.text)}}>{props.text}</p>
+            <p onClick={() => {showModalEdit(); props.findTodo(props.id)}}>{props.text}</p>
             <span className={`absolute -right-2 -top-2 rounded-full cursor-pointer hover:text-indigo-100 hover:bg-red-900 ${styleClickDeleteIcon}`} 
-                onClick={()=>{showModal(); props.findText(props.text)}}>  
+                onClick={()=>{showModal(); props.findTodo(props.id)}}>  
                     <DeleteIcon/>
             </span>
         </div>

@@ -7,19 +7,21 @@ function CreateTodoButton({ setOpenModal, loading, openModal }){
     const modalOpen = openModal ? 'transition ease-in-out duration-300 rotate-45' : ''
     
     return(
-    
-        <div className={`justify-items-stretch -top-6 bg-indigo-200 border rounded-full size-fit hover:scale-110 duration-300 ${buttonDisabled}`}>
-            <button className={`bg-indigo-200 size-16 rounded-full border-indigo-500 text-indigo-800 font-normal  hover:bg-[#80d8daac] hover:opacity-50 hover:text-[#392177] duration-300 ${modalOpen}`}
-            onClick={ () => setOpenModal(state => !state)}
+        <>
+            <div className={`justify-items-stretch -top-6 bg-indigo-200 border rounded-full size-fit hover:scale-110 duration-300 ${buttonDisabled}`}>
+                <button className={`bg-indigo-200 size-16 rounded-full border-indigo-500 text-indigo-800 font-normal  hover:bg-[#80d8daac] hover:opacity-50 hover:text-[#392177] duration-300 ${modalOpen}`}
+                onClick={ () => setOpenModal(state => !state)}
 
-            >
-            <PlusIcon
-                whith={'64px'}
-                height={'64px'}
-                strokeWidth={'1'}
-            />
-            </button>
-        </div>
+                >
+                <PlusIcon
+                    whith={'64px'}
+                    height={'64px'}
+                    strokeWidth={'1'}
+                />
+                </button>
+            </div>        
+        </>
+    
     );
 }
 

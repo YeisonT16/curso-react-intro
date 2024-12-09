@@ -48,138 +48,143 @@ function App() {
     setModalDialog,
     modalEdit,
     setModalEdit,
-    findText,
-    showText,
+    findTodo,
+    showTodo,
     filteredTodos
   } = useTodos();
 
   return (
-    <div className="z-0 relative flex flex-col w-full bg-gradient-to-r from-[#80d8daac] to-[#392177] h-auto justify-center items-center p-10 min-h-screen" >
+    <>
+      <div className="z-0 relative flex flex-col w-full bg-gradient-to-r from-[#80d8daac] to-[#392177] h-auto justify-center items-center p-10 min-h-screen" >
 
-    <TodoHeader>
-      <TodoCounter
-        totalTodos={totalTodos}
-        completedTodos={completedTodos}
-        loading={loading}
-      />
-      <TodoSearch
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-        loading={loading}
-      />
-    </TodoHeader>
-    <TodoContainer>
-    <TodoList
-      error={error}
-      loading={loading}
-      searchedTodos={searchedTodos}
-      totalTodos={totalTodos}
-      searchText={searchValue}
-      filteredTodos={filteredTodos}
-      onError={() => <TodoError />}
-      onLoading={renderLoading}
-      onEmptyTodos={() => <EmptyTodos />}
-      onEmptySearchResults={(searchText) => 
-      <TodoEmptyResults 
-        searchText={searchText}
-      />}
-      // render={todo => (
-      //   <TodoItem
-      //       key={todo.text}
-      //       text={todo.text}
-      //       completed={todo.completed}
-      //       onFinaliced={() => finalicedTodo(todo.text)}
-      //       onDelete={() => deleteTodo(todo.text)}
-      //   />
-      // )}
-    >
-  
-      {todo => (
-        <TodoItem
-            key={todo.text}
-            text={todo.text}
-            todos={todos}
-            setTodos={setTodos}
-            saveTodos={saveTodos}
-            completed={todo.completed}
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-            onFinaliced={() => finalicedTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-            findText={findText}
-            setModalDialog={setModalDialog}
-            modalEdit={modalEdit}
-            setModalEdit={setModalEdit}
-            showText={showText}
+      <TodoHeader>
+        <TodoCounter
+          totalTodos={totalTodos}
+          completedTodos={completedTodos}
+          loading={loading}
         />
+        <TodoSearch
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          loading={loading}
+        />
+      </TodoHeader>
+      <TodoContainer>
+      <TodoList
+        error={error}
+        todos={todos}
+        loading={loading}
+        searchedTodos={searchedTodos}
+        totalTodos={totalTodos}
+        searchText={searchValue}
+        filteredTodos={filteredTodos}
+        onError={() => <TodoError />}
+        onLoading={renderLoading}
+        onEmptyTodos={() => <EmptyTodos />}
+        onEmptySearchResults={(searchText) => 
+        <TodoEmptyResults 
+          searchText={searchText}
+        />}
+        // render={todo => (
+        //   <TodoItem
+        //       key={todo.text}
+        //       text={todo.text}
+        //       completed={todo.completed}
+        //       onFinaliced={() => finalicedTodo(todo.text)}
+        //       onDelete={() => deleteTodo(todo.text)}
+        //   />
+        // )}
+      >
+    
+        {todo => (
+          <TodoItem
+              key={todo.id}
+              id={todo.id}
+              text={todo.text}
+              todos={todos}
+              setTodos={setTodos}
+              saveTodos={saveTodos}
+              completed={todo.completed}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              onFinaliced={() => finalicedTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+              findTodo={findTodo}
+              setModalDialog={setModalDialog}
+              modalEdit={modalEdit}
+              setModalEdit={setModalEdit}
+              showText={showTodo}
+          />
+        )}
+
+        </TodoList>
+
+        <CreateTodoButton    
+        setOpenModal={setOpenModal}
+        loading={loading}
+        openModal={openModal}
+        />
+
+      </TodoContainer>
+
+      
+      
+    
+        {/*loading && <p>Estamos cargando...</p>}
+        {error && <p>Ups. Algo salio mal...</p>}
+        {(!loading && searchedTodos.length === 0) && <p>¡Crea tu primer TODO!</p>}
+
+        {searchedTodos.map(todo => {
+          return <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onFinaliced={() => finalicedTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+          />
+        })
+          */}
+      
+      
+
+      {openModal && ( //&& funciona como un if (si openModal es true 'esta abierto')
+        <Modal>
+        <TodoForm
+          addTodo={addTodo}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        />
+        </Modal>
+      )}
+      
+      {modalDialog && (
+        <Modal>
+          
+          <ModalDialog
+              todos={todos}
+              modalDialog={modalDialog}
+              setModalDialog={setModalDialog}
+              onDelete={deleteTodo}
+              showTodo={showTodo}
+          />
+        </Modal>
       )}
 
-      </TodoList>
-
-      <CreateTodoButton    
-      setOpenModal={setOpenModal}
-      loading={loading}
-      openModal={openModal}
-      />
-
-    </TodoContainer>
-
-    
-    
-  
-      {/*loading && <p>Estamos cargando...</p>}
-      {error && <p>Ups. Algo salio mal...</p>}
-      {(!loading && searchedTodos.length === 0) && <p>¡Crea tu primer TODO!</p>}
-
-      {searchedTodos.map(todo => {
-        return <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onFinaliced={() => finalicedTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-        />
-      })
-         */}
-    
-    
-
-    {openModal && ( //&& funciona como un if (si openModal es true 'esta abierto')
-      <Modal>
-      <TodoForm
-        addTodo={addTodo}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      />
-      </Modal>
-    )}
-    
-    {modalDialog && (
-      <Modal>
-        
-        <ModalDialog
+      {modalEdit && (
+        <Modal>
+          <TodoEdit
+            selectTodo={showTodo}  
+            text={showTodo.text}        
+            modalEdit={modalEdit}
             todos={todos}
-            modalDialog={modalDialog}
-            setModalDialog={setModalDialog}
-            onDelete={deleteTodo}
-            text={showText.text}
-        />
-      </Modal>
-    )}
-
-    {modalEdit && (
-      <Modal>
-        <TodoEdit  
-          text={showText.text}        
-          modalEdit={modalEdit}
-          todos={todos}
-          setTodos={setTodos}
-          setModalEdit={setModalEdit}
-          saveTodos={saveTodos}
-        />
-      </Modal>
-    )}
-    </div>
+            setTodos={setTodos}
+            setModalEdit={setModalEdit}
+            saveTodos={saveTodos}
+          />
+        </Modal>
+      )}
+      </div>
+    </>
   );
 }
 
