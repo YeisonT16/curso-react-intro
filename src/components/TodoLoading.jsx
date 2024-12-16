@@ -1,5 +1,4 @@
 import React from "react";
-// Skeleton por hacer
 
 function TodoLoading() {
 

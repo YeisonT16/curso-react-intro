@@ -17,17 +17,11 @@ function TodoItem(props){
 
     //Función para pasarle las props al componente ModalDialog sin renderizarlo
     const showModal = () => {
-        <ModalDialog             
-
-        />
         props.setModalDialog(true)
     }
         
     // console.log(props.showText);
-    const showModalEdit = () => {
-        <TodoEdit        
-        />
-        
+    const showModalEdit = () => {        
         props.setModalEdit(true)
     }
 

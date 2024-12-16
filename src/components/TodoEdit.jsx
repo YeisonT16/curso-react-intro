@@ -1,7 +1,7 @@
 import React from 'react';
 import { initialValue } from '../constans';
 
-function TodoEdit({ selectTodo, text, setModalEdit, todos, setTodos, modalEdit, saveTodos}){
+function TodoEdit({ selectTodo, setModalEdit, todos, setTodos, modalEdit, saveTodos}){
 
     const [todoValue, setTodoValue] = React.useState(initialValue)
 
@@ -10,12 +10,6 @@ function TodoEdit({ selectTodo, text, setModalEdit, todos, setTodos, modalEdit, 
             setTodoValue(dataTodo)   
     }, [selectTodo])
 
-    const onSubmit = (event) => {
-        //event.preventDefault();
-        // props.saveTodos(handleInputChange)        
-        // props.setModalEdit(false)
-        console.log('texto:',text)
-    };
 
     const onCancel = () => {
         setModalEdit(false)
@@ -31,7 +25,6 @@ function TodoEdit({ selectTodo, text, setModalEdit, todos, setTodos, modalEdit, 
             }
         ));
 
-        console.log('escribiste la letra:',event.target.value);
         
     };
 
@@ -48,18 +41,17 @@ function TodoEdit({ selectTodo, text, setModalEdit, todos, setTodos, modalEdit, 
             )
         )
         setTodoValue(initialValue)
-        console.log(todoValue);
         setModalEdit(false)        
     }
 
-    console.log('texto', text,);
+    
     
     const collapsibleForm = modalEdit ? '' : 'max-h-0 hidden'
 
     return (
-    <form className={`flex flex-col absolute items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 content-between w-96 p-4 bg-[#392177]/90 rounded-lg border-8 border-indigo-100 text-lg font-medium ${collapsibleForm}`} onSubmit={onSubmit}>
+    <form className={`flex flex-col absolute items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 content-between w-96 p-4 bg-[#392177]/90 rounded-lg border-8 border-indigo-100 text-lg font-medium ${collapsibleForm}`}>
             <label className='font-bold text-xl text-indigo-200 mb-4' htmlFor="">Editar TODO</label>
-            <textarea className='w-72 h-15 rounded-lg border resize-none outline-0 mb-8'
+            <textarea className='w-72 h-fit pl-1 rounded-lg border resize-none outline-0 mb-8'
                 placeholder='Escribe una nueva tarea..'
                 name='text'
                 value={todoValue.text}
